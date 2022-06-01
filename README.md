@@ -1,5 +1,6 @@
 # Finance Management App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/67bbc49b-2d5f-4352-82db-8b56ef6405a1/deploy-status)](https://app.netlify.com/sites/finance-management/deploys)
 
 ## Available Scripts
 
