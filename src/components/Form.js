@@ -14,11 +14,18 @@ function Form({ type }) {
 
 	const addUserExpense = e => {
 		e.preventDefault();
-		const idExpense = uid();
+
+		const getExpenseDate = new Date(newExpense.date),
+				yearExpense = getExpenseDate.getFullYear(),
+				monthExpense = getExpenseDate.getMonth() + 1,
+				idExpense = uid();
+
 		set(
-			ref(db, `/users/${auth.currentUser.uid}/${type}/${idExpense}/`),
+			ref(db, `/users/${auth.currentUser.uid}/${type}/${yearExpense}/${monthExpense}/${idExpense}/`),
 			{ ...newExpense, id: idExpense }
-		);
+		)
+		.then(() => console.log('Expense saved successfully!'))
+		.catch(err => console.log(err));
 
 		setNewExpense(initVals);
 	};

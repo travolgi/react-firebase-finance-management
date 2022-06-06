@@ -1,13 +1,3 @@
-function FilterBy({ monthActive }) {
-	return (
-		<select defaultValue={monthActive}>
-			{months.map(month =>
-				<option key={month.id} value={month.id}>{month.name}</option>
-			)}
-		</select>
-	);
-}
-
 const months = [
 	{
 		id: 1,
@@ -58,5 +48,31 @@ const months = [
 		name: 'December'
 	},
 ];
+
+function FilterBy({ monthActive, yearActive, handleChangeDate }) {
+	return (
+		<>
+			<select
+				id="month"
+				defaultValue={monthActive}
+				onChange={handleChangeDate}
+			>
+				{months.map(month =>
+					<option key={month.id} value={month.id}>{month.name}</option>
+				)}
+			</select>
+
+			<select
+				id="year"
+				defaultValue={yearActive}
+				onChange={handleChangeDate}
+			>
+				<option value="2022">2022</option>
+				<option value="2023">2023</option>
+				<option value="2024">2024</option>
+			</select>
+		</>
+	);
+}
 
 export default FilterBy;
