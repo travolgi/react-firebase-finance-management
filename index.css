@@ -1,0 +1,209 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	list-style: none;
+	outline: none;
+	box-sizing: border-box;
+}
+
+:root {
+	--white: #fff;
+	--text: #F2F2F2;
+	--bg: #12121a;
+	--bg-darkpurple: #1c0913;
+	--bg-darkgreen: #002625;
+	--bg-input: #4B4B4B;
+	--red: #ba0035;
+	--greenwater: #00beb7;
+	--gradient: linear-gradient(80deg, #ba0035 18%, #5b5b84 70%, #00beb7 105%);
+}
+
+::-webkit-scrollbar {
+	width: .7rem;
+}
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 1rem;
+}
+html {
+	scrollbar-width: thin;
+	scroll-behavior: smooth;
+	background-color: var(--bg);
+}
+
+body, button, input {
+	font-family: 'Sulphur Point', sans-serif;
+	font-size: 1.15rem;
+	font-weight: 300;
+	font-display: swap;
+	line-height: 1.5;
+	color: var(--text);
+}
+
+h1, h2, h3 {
+	margin-bottom: 1rem;
+	color: var(--white);
+}
+
+button {
+	padding: .3rem 1.5rem;
+	border-radius: 3rem;
+	font-weight: 700;
+	border: double .2rem transparent;
+	background: var(--gradient);
+	background-clip: padding-box, border-box;
+	background-origin: border-box;
+	transition: .6s ease-in;
+}
+button[type=submit] {
+	padding: .8rem;
+	aspect-ratio: 1;
+}
+button[type=submit] svg {
+	width: 1.5rem;
+	aspect-ratio: 1;
+}
+button:hover, button:active {
+	background-image: linear-gradient( var(--bg-input), var(--bg-input) ), var(--gradient);
+}
+button.edit, button.delete {
+	padding: 0 .6rem;
+	background: transparent;
+}
+button.edit::before {
+	content: '\22EE';
+}
+button.delete::before {
+	content: '\002715';
+}
+
+nav {
+	display: grid;
+	justify-content: start;
+	align-items: center;
+	grid-template-columns: max-content max-content min-content;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+nav > * {
+	margin: 0;
+}
+
+input, select {
+	width: 100%;
+	padding: .4rem 1rem;
+	border-radius: 3rem;
+	background-color: var(--bg-input);
+	border: .1rem solid var(--bg-input);
+	transition: .6s ease-in-out;
+}
+select {
+	width: auto;
+	padding: .2rem .5rem;
+	color: var(--text);
+	background-color: var(--bg-darkgreen);
+}
+input:focus, select:focus {
+	border: .1rem solid var(--text);
+}
+
+main {
+	min-height: 100vh;
+	max-width: 100rem;
+	margin-inline: auto;
+	padding: 2rem 1rem;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+	padding-bottom: 1.5rem;
+}
+.user {
+	max-width: 20rem;
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	column-gap: 1rem;
+}
+.user img {
+	width: 3.5rem;
+	aspect-ratio: 1;
+	border-radius: 100%;
+	grid-row: span 2;
+	text-align: center;
+	background-color: var(--bg-darkgreen);
+}
+
+section {
+	padding-block: 1rem 4rem;
+}
+
+form, ul.expense-list li {
+	display: grid;
+	grid-template-columns: 1fr .5fr .5fr min-content;
+	justify-items: start;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+ul.expense-list {
+	margin-top: 1rem;
+}
+ul.expense-list li {
+	padding: .5rem;
+	border-bottom: .1rem solid var(--bg-input);
+}
+ul.expense-list li.tot-expense {
+	background-color: var(--bg-darkpurple);
+}
+ul.expense-list li.no-expense {
+	opacity: .6;
+}
+
+.txt-center {
+	text-align: center;
+}
+
+.copyright {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: .6rem;
+	margin-block: 4rem 1rem;
+}
+.copyright img {
+	width: 6rem;
+	margin-top: .15rem;
+}
+
+@media (max-width: 44em) {
+	.user > *:not(img) {
+		display: none;
+	}
+	form {
+		grid-template-columns: repeat(2, 1fr);
+		place-items: center;
+		gap: 1rem;
+	}
+	form input:first-child, form button[type="submit"] {
+		grid-column: span 2;
+	}
+	ul.expense-list li {
+		grid-template-columns: 1fr max-content;
+		align-items: center;
+		gap: 0 1rem;
+		padding-right: 0;
+	}
+	ul.expense-list button {
+		justify-self: end;
+	}
+	button.delete {
+		padding: 0;
+	}
+}
