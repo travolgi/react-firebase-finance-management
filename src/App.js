@@ -1,18 +1,28 @@
 import { useState } from 'react';
 import useUser from './hooks/useUser.js';
 import Header from './components/Header.js';
-// import FilterBy from './components/FilterBy.js';
+import FilterBy from './components/FilterBy.js';
 import Form from './components/Form.js';
 import ExpenseList from './components/ExpenseList.js';
 
 function App() {
 	const user = useUser();
 
-	/*
-	const currentMonth = new Date().getMonth() + 1,
-			[monthInvestment, setMonthInvestment] = useState(currentMonth),
-			[monthFun, setMonthFun] = useState(currentMonth);
-	*/
+	const currentDate = {
+				year: new Date().getFullYear(),
+				month: new Date().getMonth() + 1
+			}, 
+			[dateInvestment, setDateInvestment] = useState(currentDate),
+			[dateFun, setDateFun] = useState(currentDate);
+
+	const handleChangeDateInvestiment = e => {
+		const { id, value } = e.target;
+      setDateInvestment({ ...dateInvestment, [id]: value });
+	}
+	const handleChangeDateFun = e => {
+		const { id, value } = e.target;
+      setDateFun({ ...dateFun, [id]: value });
+	}
 
 	return (
 		<>
@@ -29,24 +39,37 @@ function App() {
 					<section>
 						<nav>
 							<h2>Investment</h2>
-							{/*
 							<FilterBy
-								monthActive={monthInvestment}
+								monthActive={dateInvestment.month}
+								yearActive={dateInvestment.year}
+								handleChangeDate={handleChangeDateInvestiment}
 							/>
-							*/}
 						</nav>
 						
 						<Form type='investment' />
-						<ExpenseList type='investment' />
+						<ExpenseList
+							type='investment'
+							yearActive={dateInvestment.year}
+							monthActive={dateInvestment.month}
+						/>
 					</section>
 
 					<section>
 						<nav>
-							<h2>Fun</h2>
+							<h2>Fun</h2>							
+							<FilterBy
+								monthActive={dateFun.month}
+								yearActive={dateFun.year}
+								handleChangeDate={handleChangeDateFun}
+							/>
 						</nav>
 
 						<Form type='fun' />
-						<ExpenseList type='fun' />
+						<ExpenseList
+							type='fun'
+							yearActive={dateFun.year}
+							monthActive={dateFun.month}
+						/>
 					</section>
 				</>
 			}
