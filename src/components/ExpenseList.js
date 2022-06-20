@@ -67,7 +67,7 @@ function ExpenseList({ type, yearActive, monthActive }) {
 						</li>
 					)}
 
-					<li className="tot-expense">
+					<li className={type !== 'earn' ? 'tot-expense' : 'tot-earn'}>
 						<span>TOTAL:</span>
 						<strong>€ {totExpense}</strong>
 					</li>
