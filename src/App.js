@@ -13,7 +13,8 @@ function App() {
 				month: new Date().getMonth() + 1
 			}, 
 			[dateInvestment, setDateInvestment] = useState(currentDate),
-			[dateFun, setDateFun] = useState(currentDate);
+			[dateFun, setDateFun] = useState(currentDate),
+			[dateEarn, setDateEarn] = useState(currentDate);
 
 	const handleChangeDateInvestiment = e => {
 		const { id, value } = e.target;
@@ -22,6 +23,10 @@ function App() {
 	const handleChangeDateFun = e => {
 		const { id, value } = e.target;
       setDateFun({ ...dateFun, [id]: value });
+	}
+	const handleChangeDateEarn = e => {
+		const { id, value } = e.target;
+      setDateEarn({ ...dateEarn, [id]: value });
 	}
 
 	return (
@@ -69,6 +74,24 @@ function App() {
 							type='fun'
 							yearActive={dateFun.year}
 							monthActive={dateFun.month}
+						/>
+					</section>
+
+					<section>
+						<nav>
+							<h2>Earnings</h2>							
+							<FilterBy
+								monthActive={dateEarn.month}
+								yearActive={dateEarn.year}
+								handleChangeDate={handleChangeDateEarn}
+							/>
+						</nav>
+
+						<Form type='earn' />
+						<ExpenseList
+							type='earn'
+							yearActive={dateEarn.year}
+							monthActive={dateEarn.month}
 						/>
 					</section>
 				</>

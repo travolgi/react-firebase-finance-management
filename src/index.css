@@ -146,7 +146,7 @@ section {
 
 form, ul.expense-list li {
 	display: grid;
-	grid-template-columns: 1fr .5fr .5fr min-content;
+	grid-template-columns: 1fr .5fr .5fr 2.3rem;
 	justify-items: start;
 	align-items: center;
 	gap: 1.5rem;
@@ -161,6 +161,9 @@ ul.expense-list li {
 }
 ul.expense-list li.tot-expense {
 	background-color: var(--bg-darkpurple);
+}
+ul.expense-list li.tot-earn {
+	background-color: var(--bg-darkgreen);
 }
 ul.expense-list li.no-expense {
 	opacity: .6;
