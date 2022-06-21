@@ -37,7 +37,7 @@ function Form({ type }) {
 				type="text"
 				minLength="3"
 				value={newExpense.name}
-				placeholder="Expense name"
+				placeholder={type !== 'earn' ? 'Expense name' : 'Earning name'}
 				id="name"
 				onChange={handleChange}
 				required
