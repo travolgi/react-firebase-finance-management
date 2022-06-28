@@ -5,7 +5,7 @@
 This application helps you keep track of your expenses and earnings from month to month by calculating their total.  
 By keeping track of all your expenses and earnings, you realize where your money is going and how your finance is going.
 
-\_Work in progress...\_
+<em>Work in progress...</em>
 
 ## Table of contents
 
@@ -70,9 +70,9 @@ In order to view this project locally, you need to make sure you clone this repo
 
 ### System Requirements
 
-- [git][https://git-scm.com/] 2.31.1 or greater
-- [node][https://nodejs.org/en/] 14.16.1 or greater
-- [npm][https://nodejs.org/en/] 8.7.0 or greater
+- [git](https://git-scm.com) 2.31.1 or greater
+- [node](https://nodejs.org/en) 14.16.1 or greater
+- [npm](https://nodejs.org/en) 8.7.0 or greater
 
 To check which versions you have installed you can run these commands:
 ```
