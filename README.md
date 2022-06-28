@@ -2,67 +2,123 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/67bbc49b-2d5f-4352-82db-8b56ef6405a1/deploy-status)](https://app.netlify.com/sites/finance-management/deploys)
 
-## Available Scripts
+This application helps you keep track of your expenses and earnings from month to month by calculating their total.  
+By keeping track of all your expenses and earnings, you realize where your money is going and how your finance is going.
 
-### `npm start`
+\_Work in progress...\_
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Overview](#overview)
+  - [About App](#about-app)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Useful resources](#useful-resources)
+- [Getting Started](#getting-started)
+  - [System Requirements](#system-requirements)
+  - [Installation](#installation)
+  - [Bugs](#bugs)
+  - [Contributing](#contributing)
+- [Author](#author)
+- [Licence](#licence) 
 
-### `npm test`
+## Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### About App
 
-### `npm run build`
+This application helps you keep track of your finances:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- sign in securely with your Google account
+- choose the page that best suits your expense or earning (Expense: Fun - Life, Investments, Earnings, Bank)
+- enter the name of your expense or earning, the amount and the date
+- delete an expense or a earning
+- see the total of your expenses or your earnings for the month
+- filter by month and year and see your current expenses or your earnings
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Upcoming Features:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- edit an expense or a earning
+- month and year filtering by checking the data in the database and showing only the dates present
+- if you have other interesting features to propose or request write to us!
 
-### `npm run eject`
+### Links
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Repository URL: [github](https://github.com/travolgi/react-firebase-finance-management)
+- Live Site URL: [live site](https://finance.travolgi.com)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## My process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Built with
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Semantic HTML5 markup
+- CSS custom properties
+- Grid and Flexbox layout
+- [React](https://reactjs.org) - JS library
+- [React Router](https://reactrouter.com) - For routes
+- [Firebase](https://firebase.google.com) - Realtime Database
 
-## Learn More
+### Useful resources
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [React](https://reactjs.org/docs/getting-started.html) - Docs
+- [React Router](https://reactrouter.com/docs/en/v6) - Docs
+- [Firebase](https://firebase.google.com/docs) - Docs
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting Started
 
-### Code Splitting
+In order to view this project locally, you need to make sure you clone this repository and install it's dependencies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### System Requirements
 
-### Analyzing the Bundle Size
+- [git][https://git-scm.com/] 2.31.1 or greater
+- [node][https://nodejs.org/en/] 14.16.1 or greater
+- [npm][https://nodejs.org/en/] 8.7.0 or greater
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To check which versions you have installed you can run these commands:
+```
+git --version
+node --version
+npm --version
+```
+If requirements above are not installed in your computer, you'll need to install them. By clicking on them you can go to their website, which can lead you the way.
 
-### Making a Progressive Web App
+### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Clone the repository
+  ```sh
+  git clone https://github.com/travolgi/react-firebase-finance-management.git
+  ```
+- Navigate to repository folder
+  ```sh
+  cd react-firebase-finance-management
+  ```
+- Install npm packages
+  ```sh
+  npm install
+  ```
+- To run the app in the development mode run in the project directory: 
+  ```sh
+  npm start
+  ```
 
-### Advanced Configuration
+### Bugs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Please feel free to create an issue if you see a bug or something unexpected in the app.
 
-### Deployment
+### Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Fork the Project
+- Create your Feature Branch (`git checkout -b feature/yourFeature`)
+- Commit your Changes (`git commit -m 'Brief explanation of feature`')
+- Push to the Branch (`git push origin feature/yourFeature`)
+- Open a Pull Request
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [travolgi](https://travolgi.com)
+- Github - [travolgi](https://github.com/travolgi)
+
+## Licence 
+[MIT licence](https://github.com/travolgi/react-firebase-finance-management/blob/main/LICENSE)
+
+React is [MIT licence](https://github.com/facebook/react/blob/main/LICENSE)

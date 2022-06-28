@@ -81,6 +81,12 @@ button.delete::before {
 	content: '\002715';
 }
 
+.nav-toggle {
+	display: none;
+}
+button.nav-toggle:hover, button.nav-toggle:active {
+	background-image: none;
+}
 nav {
 	display: grid;
 	justify-content: start;
@@ -91,6 +97,34 @@ nav {
 }
 nav > * {
 	margin: 0;
+}
+nav#navbar {
+	gap: 0;
+}
+nav#navbar ul {
+	display: grid;
+	place-items: center;
+	grid-template-columns: repeat(5, max-content);
+	gap: 2rem;
+}
+nav#navbar ul a {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--text);
+	text-decoration: none;
+	transition: .3s ease-in-out;
+}
+nav#navbar ul a:hover {
+	color: var(--bg-input);
+}
+nav#navbar ul a.active {
+	color: var(--red);
+	background: var(--gradient);
+	background-size: cover;
+	background-clip: text;
+	text-fill-color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 input, select {
@@ -151,6 +185,9 @@ form, ul.expense-list li {
 	align-items: center;
 	gap: 1.5rem;
 }
+form {
+	grid-template-columns: 1fr .5fr .5fr max-content;
+}
 
 ul.expense-list {
 	margin-top: 1rem;
@@ -188,6 +225,46 @@ ul.expense-list li.no-expense {
 @media (max-width: 44em) {
 	.user > *:not(img) {
 		display: none;
+	}
+
+	.nav-toggle {
+		display: block;
+		position: absolute;
+		right: 1rem;
+		background: transparent;
+		background-image: url(./imgs/icon-hamburger.svg) !important;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 1.6rem;
+		aspect-ratio: 1;
+		z-index: 999;
+	}
+	.nav-toggle[aria-expanded="true"]{
+		background-image: url(./imgs/icon-close.svg);
+	}
+	nav#navbar {
+		position: fixed;
+		top: 6.8rem; 
+		right: 1rem;
+		padding: 2rem 3rem;
+		background: var(--bg);
+		border-radius: 1rem;
+		border: .1rem solid var(--bg-input);
+		box-shadow: .3rem .5rem .5rem rgba(255,255,255,.15);
+		z-index: 99;
+		transform: translateX(200%);
+		transition: transform .5s ease-in-out;
+	}
+	nav#navbar ul {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+	nav#navbar[data-visible="true"] {
+		transform: translateX(0);
+	}  
+
+	nav > h2 {
+		grid-column: span 3;
 	}
 	form {
 		grid-template-columns: repeat(2, 1fr);

@@ -1,5 +1,6 @@
-import useUser from '../hooks/useUser.js';
 import { signInWithGoogle, signOut } from '../firebase.js';
+import useUser from '../hooks/useUser.js';
+import Navbar from './Navbar.js';
 
 function Header() {
 	const user = useUser();
@@ -9,13 +10,13 @@ function Header() {
 				<button onClick={signInWithGoogle}>Sign In</button>
 				:
 				<>
-					<button onClick={signOut}>Sign Out</button>
-					
 					<div className="user">
 						<img src={user.photoURL} alt="User" />
 						<strong>{user.displayName}</strong>
 						<small>{user.email}</small>
 					</div>
+
+					<Navbar signOut={signOut} />
 				</>
 			}
 		</header>

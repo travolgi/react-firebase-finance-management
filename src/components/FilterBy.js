@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+import { ref, onValue } from 'firebase/database';
+import { db, auth } from '../firebase';
+
 const months = [
 	{
 		id: 1,
@@ -49,7 +53,26 @@ const months = [
 	},
 ];
 
-function FilterBy({ monthActive, yearActive, handleChangeDate }) {
+function FilterBy({ type, monthActive, yearActive, handleChangeDate }) {
+	/*
+	const [years, setYears] = useState([yearActive]);
+
+	useEffect(() => {
+		onValue(
+			ref(db, `/users/${auth.currentUser.uid}/${type}`),
+			snapshot => {
+				setYears([]);
+				const snapval = snapshot.val();
+				if(snapval !== null) {
+					let dbYears = [];
+					Object.keys(snapval).map(dbYear => dbYears = [ ...dbYears, dbYear, yearActive ]);
+					setYears(dbYears);
+				}
+			}
+		);
+	}, [type]);
+	*/
+
 	return (
 		<>
 			<select
