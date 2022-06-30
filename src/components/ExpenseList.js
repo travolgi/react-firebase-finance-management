@@ -7,15 +7,22 @@ function ExpenseList({ type, yearActive, monthActive }) {
 			[totExpense, setTotExpense] = useState(null);
 
 	useEffect(() => {
+		const query = monthActive === 'all' ?
+			`/users/${auth.currentUser.uid}/${type}/${yearActive}` :
+			`/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}`;
+
 		onValue(
-			ref(db, `/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}`),
+			ref(db, query),
 			snapshot => {
 				setData([]);
 				const snapval = snapshot.val();
 				if(snapval !== null) {
 					let dbData = [];
 
-					Object.values(snapval).map(dbVal => dbData = [ ...dbData, dbVal ]);
+					monthActive === 'all' ?
+						Object.values(snapval).map(dbMonth => Object.values(dbMonth).map(dbVal => dbData = [ ...dbData, dbVal ])):
+						Object.values(snapval).map(dbVal => dbData = [ ...dbData, dbVal ]);
+
 					setData(dbData);
 					
 					let total = dbData.reduce((tot, current) => tot + parseInt(current.price), 0);
@@ -34,8 +41,12 @@ function ExpenseList({ type, yearActive, monthActive }) {
 	}
 
 	const handleDelete = e => {
+		const expenseId = e.target.id,
+				expenseMonth = parseInt(e.target.value),
+				queryMonth = monthActive === 'all' ? expenseMonth : monthActive;
+		
 		if(window.confirm('You want to delete this expense?')) {
-			remove(ref(db, `/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}/${e.target.id}`))
+			remove(ref(db, `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`))
 				.then(() => console.log('Successfully deleted!'))
 				.catch(err => console.log(err));
 		} else {
@@ -55,6 +66,7 @@ function ExpenseList({ type, yearActive, monthActive }) {
 							<button
 								className="delete"
 								id={expense.id}
+								value={expense.date.slice(5,7)}
 								onClick={handleDelete}
 							/>
 							{/*

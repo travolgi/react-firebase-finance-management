@@ -83,6 +83,7 @@ function FilterBy({ type, monthActive, yearActive, handleChangeDate }) {
 				{months.map(month =>
 					<option key={month.id} value={month.id}>{month.name}</option>
 				)}
+				<option value="all">See all</option>
 			</select>
 
 			<select

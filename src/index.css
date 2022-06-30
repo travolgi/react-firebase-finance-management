@@ -91,7 +91,7 @@ nav {
 	display: grid;
 	justify-content: start;
 	align-items: center;
-	grid-template-columns: max-content max-content min-content;
+	grid-template-columns: repeat(3, max-content);
 	gap: 1rem;
 	margin-bottom: 1rem;
 }

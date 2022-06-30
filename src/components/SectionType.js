@@ -12,7 +12,7 @@ function SectionType({ type }) {
 	handleChangeDate = e => {
 		const { id, value } = e.target;
 		setDate({ ...date, [id]: value });
-	}
+	};
 
 	return (
 		<section>
