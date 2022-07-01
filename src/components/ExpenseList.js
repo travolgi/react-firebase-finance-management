@@ -26,7 +26,7 @@ function ExpenseList({ type, yearActive, monthActive }) {
 					setData(dbData);
 					
 					let total = dbData.reduce((tot, current) => tot + parseInt(current.price), 0);
-					setTotExpense(total);
+					setTotExpense(total.toLocaleString());
 				}
 			}
 		);
@@ -61,7 +61,7 @@ function ExpenseList({ type, yearActive, monthActive }) {
 					{data.map(expense => 
 						<li key={expense.id}>
 							<span>{expense.name}</span>
-							<strong>€ {expense.price}</strong>
+							<strong>€ {parseInt(expense.price).toLocaleString()}</strong>
 							<time>{expense.date}</time>
 							<button
 								className="delete"
