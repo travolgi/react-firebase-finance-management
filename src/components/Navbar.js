@@ -16,7 +16,7 @@ function Navbar({ signOut }) {
 				onClick={handleToggle}
 			/>
 
-			<nav id="navbar" ref={refNavBar} data-visible={isOpen}>
+			<nav id="navbar" ref={refNavBar} data-visible={isOpen} onFocus={handleToggle}>
 				<ul>
 					<li>
 						<Link
