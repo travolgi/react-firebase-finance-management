@@ -7,6 +7,8 @@ By keeping track of all your expenses and earnings, you realize where your money
 
 <em>Work in progress...</em>
 
+![Finance Management app](./screenshot.webp)
+
 ## Table of contents
 
 - [Overview](#overview)
