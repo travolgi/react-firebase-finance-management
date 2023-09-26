@@ -1,40 +1,53 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useUser from './hooks/useUser.js';
 import Header from './components/Header.js';
+import Footer from './components/Footer.js';
 import SectionType from './components/SectionType.js';
 
-function App() {
-	const user = useUser();
+export default function App() {
+	const user = useUser(),
+			isUserSignedIn = user !== null;
 
 	return (
 		<BrowserRouter>
 			<Header />
 
-			{user === null ?
-				<div className="txt-center">
-					<h1>Finance Management</h1>
-					<p>Sign in with Google to use the app.</p>
-				</div>
-				:
-				<>
-					<h1 className="txt-center">Finance Management</h1>
-					<Routes>
-						<Route path='/' element={<> <SectionType type='fun' /> <SectionType type='life' /> </>} />
-						<Route path='/investments' element={<SectionType type='investments' />} />
-						<Route path='/earnings' element={<SectionType type='earnings' />} />
-						<Route path='/bank' element={<SectionType type='bank' />} />
-					</Routes>
-				</>
-			}
+			<div className="txt-center">
+				<h1>Finance Management</h1>
 
-			<div className="copyright">
-				<small>&copy; developed by</small>
-				<a href="https://travolgi.com" target="_blank" rel="noopener noreferrer">
-					<img src="https://sled.travolgi.com/assets/travolgi-logo.png" alt="Travolgi logo" />
-				</a>
+				{isUserSignedIn ?
+					<Routes>
+						<Route
+							path='/'
+							element={[<SectionType type='fun' />, <SectionType type='life' />]}
+						/>
+						<Route
+							path='/investments'
+							element={<SectionType type='investments' />}
+						/>
+						<Route
+							path='/earnings'
+							element={[<SectionType type='earnings' />, <SectionType type='job' />]}
+						/>
+						<Route
+							path='/bank'
+							element={<SectionType type='bank' />}
+						/>
+						<Route
+							path='/summary'
+							element={<h2>- Under construction -</h2>}
+						/>
+						<Route
+							path='/*'
+							element={<h1>404 Error - Page Not Found</h1>}
+						/>
+					</Routes>
+					:
+					<p>Sign in with Google to use the app.</p>
+				}
 			</div>
+
+			<Footer />
 		</BrowserRouter>
 	);
 }
-
-export default App;

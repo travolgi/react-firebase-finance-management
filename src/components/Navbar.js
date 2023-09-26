@@ -1,12 +1,22 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useIsOpen from '../hooks/useIsOpen'
+import useOutsideClick from '../hooks/useOutsideClick'
 
-function Navbar({ signOut }) {
+function ActiveLink({ href, children, handleToggle }) {
 	const location = useLocation().pathname,
-			refNavBar = useRef(),
-			[isOpen, setIsOpen] = useState(false),
-         handleToggle = () => setIsOpen(!isOpen);
-			
+			isActive = location === href;
+	return (
+		<Link to={href} className={isActive ? 'active' : ''} onClick={handleToggle}>
+			{children}
+		</Link>
+	)
+}
+
+export default function Navbar({ signOut }) {
+	const refNavBar = useRef(),
+			[isOpen, handleToggle] = useIsOpen();
+	useOutsideClick({ val: isOpen, ref: refNavBar, handler: handleToggle });
 	return (
 		<>
 			<button
@@ -14,33 +24,29 @@ function Navbar({ signOut }) {
 				aria-controls={refNavBar}
 				aria-expanded={isOpen}
 				onClick={handleToggle}
-			/>
+			>
+				<span className="sr-only">Menu</span>
+				<div className="bar1" />
+				<div className="bar2" />
+				<div className="bar3" />
+			</button>
 
-			<nav id="navbar" ref={refNavBar} data-visible={isOpen} onFocus={handleToggle}>
+			<nav id="navbar" ref={refNavBar} data-visible={isOpen}>
 				<ul>
 					<li>
-						<Link
-							to="/"
-							className={location === "/" ? 'active' : null}
-							>Expense</Link>
+						<ActiveLink href="/" handleToggle={handleToggle}>Expense</ActiveLink>
 					</li>
 					<li>
-						<Link
-							to="/investments"
-							className={location === "/investments" ? 'active' : null}
-							>Investments</Link>
+						<ActiveLink href="/investments" handleToggle={handleToggle}>Investments</ActiveLink>
 					</li>
 					<li>
-						<Link
-							to="/earnings"
-							className={location === "/earnings" ? 'active' : null}
-							>Earnings</Link>
+						<ActiveLink href="/earnings" handleToggle={handleToggle}>Earnings</ActiveLink>
 					</li>
 					<li>
-						<Link
-							to="/bank"
-							className={location === "/bank" ? 'active' : null}
-							>Bank</Link>
+						<ActiveLink href="/bank" handleToggle={handleToggle}>Bank</ActiveLink>
+					</li>
+					<li>
+						<ActiveLink href="/summary" handleToggle={handleToggle}>Summary</ActiveLink>
 					</li>
 					<li>
 						<button onClick={signOut}>Sign Out</button>
@@ -50,5 +56,3 @@ function Navbar({ signOut }) {
 		</>
 	);
 }
-
-export default Navbar;

@@ -38,11 +38,11 @@ This application helps you keep track of your finances:
 - see the total of your expenses or your earnings for the month
 - filter by month and year and see your current expenses or your earnings
 - see the complete list of your expenses or earnings for the whole year
+- month and year filtering by checking the data in the database and showing only the dates present
 
 Upcoming Features:
-
+- summary page to see the difference between expenses and earnings - coming soon
 - ascending - descending order based on date
-- month and year filtering by checking the data in the database and showing only the dates present
 - edit an expense or a earning
 - if you have other interesting features to propose or request write to us!
 

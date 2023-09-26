@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ref, onValue, remove, update } from 'firebase/database';
 import { db, auth } from '../firebase';
 
-function ExpenseList({ type, yearActive, monthActive }) {
+export default function ExpenseList({ type, yearActive, monthActive }) {
 	const [data, setData] = useState([]),
 			[totExpense, setTotExpense] = useState(null);
 
@@ -17,14 +17,12 @@ function ExpenseList({ type, yearActive, monthActive }) {
 				setData([]);
 				const snapval = snapshot.val();
 				if(snapval !== null) {
-					let dbData = [];
-
-					monthActive === 'all' ?
-						Object.values(snapval).map(dbMonth => Object.values(dbMonth).map(dbVal => dbData = [ ...dbData, dbVal ])):
-						Object.values(snapval).map(dbVal => dbData = [ ...dbData, dbVal ]);
+					let dbData = monthActive === 'all'
+					? Object.values(snapval).flatMap(dbMonth => Object.values(dbMonth))
+					: Object.values(snapval);
 
 					setData(dbData);
-					
+
 					let total = dbData.reduce((tot, current) => tot + parseInt(current.price), 0);
 					setTotExpense(total.toLocaleString());
 				}
@@ -33,9 +31,12 @@ function ExpenseList({ type, yearActive, monthActive }) {
 	}, [type, yearActive, monthActive]);
 
 	const handleUpdate = e => {
-		update(ref(db, `/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}/${e.target.id}`),
-				{ /* update obj */ }
-			)
+		const expenseId = e.target.id,
+				expensePath = `/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}/${expenseId}`;
+
+		const updateExpense = {};
+
+		update(ref(db, expensePath), updateExpense)
 			.then(() => console.log('Successfully updated!'))
 			.catch(err => console.log(err));
 	}
@@ -43,14 +44,13 @@ function ExpenseList({ type, yearActive, monthActive }) {
 	const handleDelete = e => {
 		const expenseId = e.target.id,
 				expenseMonth = parseInt(e.target.value),
-				queryMonth = monthActive === 'all' ? expenseMonth : monthActive;
-		
+				queryMonth = monthActive === 'all' ? expenseMonth : monthActive,
+				expensePath = `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`
+
 		if(window.confirm('You want to delete this expense?')) {
-			remove(ref(db, `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`))
+			remove(ref(db, expensePath))
 				.then(() => console.log('Successfully deleted!'))
 				.catch(err => console.log(err));
-		} else {
-			return;
 		}
 	};
 
@@ -94,5 +94,3 @@ function ExpenseList({ type, yearActive, monthActive }) {
 		</ul>
 	);
 }
-
-export default ExpenseList;

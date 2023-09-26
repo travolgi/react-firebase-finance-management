@@ -3,8 +3,8 @@ import { ref, set } from 'firebase/database';
 import { db, auth } from '../firebase';
 import { uid } from 'uid';
 
-function Form({ type }) {
-	const initVals = { name: '', price: '', date: new Date().toLocaleDateString() }
+export default function Form({ type, handleChangeDate }) {
+	const initVals = { name: '', price: '', date: new Date().toISOString().split('T')[0] }
 	const [newExpense, setNewExpense] = useState(initVals);
 
 	const handleChange = e => {
@@ -28,6 +28,7 @@ function Form({ type }) {
 		.catch(err => console.log(err));
 
 		setNewExpense(initVals);
+		handleChangeDate('month', monthExpense);
 	};
 
 	return (
@@ -36,9 +37,9 @@ function Form({ type }) {
 			<input
 				type="text"
 				minLength="3"
-				value={newExpense.name}
 				placeholder={type !== 'earnings' ? 'Expense name' : 'Earning name'}
 				id="name"
+				value={newExpense.name}
 				onChange={handleChange}
 				required
 			/>
@@ -46,17 +47,17 @@ function Form({ type }) {
 			<input
 				type="number"
 				step="any"
-				value={newExpense.price}
 				placeholder="€ price"
 				id="price"
+				value={newExpense.price}
 				onChange={handleChange}
 				required
 			/>
 
 			<input
 				type="date"
-				value={newExpense.date}
 				id="date"
+				value={newExpense.date}
 				onChange={handleChange}
 				required
 			/>
@@ -67,5 +68,3 @@ function Form({ type }) {
 		</form>
 	);
 }
-
-export default Form;

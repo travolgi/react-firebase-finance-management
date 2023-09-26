@@ -1,103 +1,43 @@
-import { useState, useEffect } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { db, auth } from '../firebase';
-
-const months = [
-	{
-		id: 1,
-		name: 'January'
-	},
-	{
-		id: 2,
-		name: 'February'
-	},
-	{
-		id: 3,
-		name: 'March'
-	},
-	{
-		id: 4,
-		name: 'April'
-	},
-	{
-		id: 5,
-		name: 'May'
-	},
-	{
-		id: 6,
-		name: 'June'
-	},
-	{
-		id: 7,
-		name: 'July'
-	},
-	{
-		id: 8,
-		name: 'August'
-	},
-	{
-		id: 9,
-		name: 'September'
-	},
-	{
-		id: 10,
-		name: 'October'
-	},
-	{
-		id: 11,
-		name: 'November'
-	},
-	{
-		id: 12,
-		name: 'December'
-	},
-];
-
-function FilterBy({ type, monthActive, yearActive, handleChangeDate }) {
-	/*
-	const [years, setYears] = useState([yearActive]);
-
-	useEffect(() => {
-		onValue(
-			ref(db, `/users/${auth.currentUser.uid}/${type}`),
-			snapshot => {
-				setYears([]);
-				const snapval = snapshot.val();
-				if(snapval !== null) {
-					let dbYears = [];
-					Object.keys(snapval).map(dbYear => dbYears = [ ...dbYears, dbYear, yearActive ]);
-					setYears(dbYears);
-				}
-			}
-		);
-	}, [type]);
-	*/
+export default function FilterBy({ type, currentDate, monthActive, yearActive, allMonths, allYears, handleChangeDate }) {
+	function getMonthName(monthNumber) {
+		const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+		return monthNames[monthNumber - 1];
+	}
 
 	return (
 		<>
 			<select
 				id="month"
-				defaultValue={monthActive}
-				onChange={handleChangeDate}
+				value={monthActive}
+				onChange={(e) => handleChangeDate('month', e.target.value)}
 			>
-				{months.map(month =>
-					<option key={month.id} value={month.id}>{month.name}</option>
-				)}
+
+				{allMonths.length > 0 ?
+					allMonths.map((month) =>
+						<option key={month} value={month}>
+							{getMonthName(month)}
+						</option>
+					) :
+					<option value={currentDate.month}>{getMonthName(currentDate.month)}</option>
+				}
 				<option value="all">See all</option>
 			</select>
 
+
 			<select
 				id="year"
-				defaultValue={yearActive}
-				onChange={handleChangeDate}
+				value={yearActive}
+				onChange={(e) => handleChangeDate('year', e.target.value)}
 			>
-				<option value="2021">2021</option>
-				<option value="2022">2022</option>
-				<option value="2023">2023</option>
-				<option value="2024">2024</option>
+				{allYears.length > 0 ?
+					allYears.map(year =>
+						<option key={year} value={year}>
+							{year}
+						</option>
+					) :
+					<option value={currentDate.year}>{currentDate.year}</option>
+				}
 			</select>
 		</>
 	);
 }
-
-export default FilterBy;

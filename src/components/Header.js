@@ -2,13 +2,12 @@ import { signInWithGoogle, signOut } from '../firebase.js';
 import useUser from '../hooks/useUser.js';
 import Navbar from './Navbar.js';
 
-function Header() {
-	const user = useUser();
+export default function Header() {
+	const user = useUser(),
+			isUserSignedIn = user !== null;
 	return (
 		<header>
-			{user === null ?
-				<button onClick={signInWithGoogle}>Sign In</button>
-				:
+			{isUserSignedIn ?
 				<>
 					<div className="user">
 						<img src={user.photoURL} alt="User" />
@@ -18,9 +17,9 @@ function Header() {
 
 					<Navbar signOut={signOut} />
 				</>
+				:
+				<button onClick={signInWithGoogle}>Sign In</button>
 			}
 		</header>
 	);
 }
-
-export default Header;

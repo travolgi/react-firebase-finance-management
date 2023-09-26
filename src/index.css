@@ -104,7 +104,7 @@ nav#navbar {
 nav#navbar ul {
 	display: grid;
 	place-items: center;
-	grid-template-columns: repeat(5, max-content);
+	grid-template-columns: repeat(6, max-content);
 	gap: 2rem;
 }
 nav#navbar ul a {
@@ -221,26 +221,47 @@ ul.expense-list li.no-expense {
 	width: 6rem;
 	margin-top: .15rem;
 }
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	white-space: nowrap;
+}
 
 @media (max-width: 44em) {
 	.user > *:not(img) {
 		display: none;
 	}
-
-	.nav-toggle {
+	button.nav-toggle {
 		display: block;
 		position: absolute;
 		right: 1rem;
+		width: 2.5rem;
+		border-radius: 0;
+		padding: 0;
 		background: transparent;
-		background-image: url(./imgs/icon-hamburger.svg) !important;
-		background-repeat: no-repeat;
-		background-position: center;
-		width: 1.6rem;
-		aspect-ratio: 1;
-		z-index: 999;
+		z-index: 9999;
 	}
-	.nav-toggle[aria-expanded="true"]{
-		background-image: url(./imgs/icon-close.svg);
+	button.nav-toggle .bar1,
+	button.nav-toggle .bar2,
+	button.nav-toggle .bar3 {
+		width: 100%;
+		height: .12rem;
+		margin-block: .65rem;
+		background-color: var(--white);
+		transition: .3s ease-in;
+	}
+	button.nav-toggle[aria-expanded="true"] .bar1 {
+		transform: rotate(-45deg) translate(-50%, -50%);
+	}
+	button.nav-toggle[aria-expanded="true"] .bar2 {
+		opacity: 0;
+	}
+	button.nav-toggle[aria-expanded="true"] .bar3 {
+		transform: rotate(45deg) translate(-50%, -50%);
 	}
 	nav#navbar {
 		position: fixed;
