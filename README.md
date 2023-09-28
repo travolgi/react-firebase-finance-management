@@ -35,6 +35,7 @@ This application helps you keep track of your finances:
 - choose the page that best suits your expense or earning (Expense: Fun - Life, Investments, Earnings, Bank)
 - enter the name of your expense or earning, the amount and the date
 - delete an expense or a earning
+- edit an expense or a earning
 - see the total of your expenses or your earnings for the month
 - filter by month and year and see your current expenses or your earnings
 - see the complete list of your expenses or earnings for the whole year
@@ -43,7 +44,6 @@ This application helps you keep track of your finances:
 Upcoming Features:
 - summary page to see the difference between expenses and earnings - coming soon
 - ascending - descending order based on date
-- edit an expense or a earning
 - if you have other interesting features to propose or request write to us!
 
 ### Links

@@ -52,7 +52,6 @@ h3 {
 	margin-bottom: 1.5rem;
 	color: var(--white);
 }
-
 button {
 	padding: .3rem 1.5rem;
 	border-radius: 3rem;
@@ -86,7 +85,39 @@ button.edit::before {
 button.delete::before {
 	content: '\002715';
 }
-
+button.gotop {
+	display: none;
+	position: fixed;
+	right: 2rem;
+	bottom: 2rem;
+	aspect-ratio: 1;
+	background: transparent;
+	opacity: .6;
+	transition: .6s ease-in;
+	z-index: 9995;
+}
+button.gotop::before,
+button.gotop::after {
+	content: '';
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 1rem;
+	width: 40%;
+	height: .12rem;
+	background: var(--white);
+	transform: rotate(45deg);
+}
+button.gotop::after {
+	right: .8rem;
+	transform: rotate(-45deg);
+}
+button.gotop:hover {
+	opacity: 1;
+}
+.visible {
+	display: block !important;
+}
 .nav-toggle {
 	display: none;
 }
@@ -192,10 +223,19 @@ section {
 form,
 ul.expense-list li {
 	display: grid;
-	grid-template-columns: 1fr .5fr .5fr 2.3rem;
+	grid-template-columns: 1fr .5fr .5fr 4.5rem;
 	justify-items: start;
 	align-items: center;
 	gap: 1.5rem;
+}
+form {
+	grid-template-columns: 1fr .5fr .5fr max-content;
+}
+form div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 }
 ul.expense-list.nobtn li {
 	grid-template-columns: 1fr .5fr .5fr;
@@ -205,9 +245,6 @@ ul.expense-list.nobtn li {
 }
 ul.expense-list.list-summary li {
 	grid-template-columns: 1fr 1fr;
-}
-form {
-	grid-template-columns: 1fr .5fr .5fr max-content;
 }
 
 ul.expense-list {

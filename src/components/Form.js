@@ -9,12 +9,22 @@ export default function Form({ type, handleChangeDate }) {
 
 	const handleChange = e => {
 		const { id, value } = e.target;
-      setNewExpense({ ...newExpense, [id]: value });
+		setNewExpense({ ...newExpense, [id]: value });
 	}
 
 	const addUserExpense = e => {
 		e.preventDefault();
-
+		
+		const trimmedExpense = {};
+		for (const key in newExpense) {
+			if (Object.hasOwnProperty.call(newExpense, key)) {
+				trimmedExpense[key] = newExpense[key].trim();
+			}
+		}
+		if (Object.values(trimmedExpense).some(value => value === '')) {
+			return;
+		}
+			
 		const getExpenseDate = new Date(newExpense.date),
 				yearExpense = getExpenseDate.getFullYear(),
 				monthExpense = getExpenseDate.getMonth() + 1,
@@ -22,9 +32,9 @@ export default function Form({ type, handleChangeDate }) {
 
 		set(
 			ref(db, `/users/${auth.currentUser.uid}/${type}/${yearExpense}/${monthExpense}/${idExpense}/`),
-			{ ...newExpense, id: idExpense }
+			{ ...trimmedExpense, id: idExpense }
 		)
-		.then(() => console.log('Expense saved successfully!'))
+		.then(() => console.log(`${type !== 'earnings' ? 'Expense' : 'Earning'} saved successfully!`))
 		.catch(err => console.log(err));
 
 		setNewExpense(initVals);
@@ -33,7 +43,6 @@ export default function Form({ type, handleChangeDate }) {
 
 	return (
 		<form onSubmit={addUserExpense}>
-
 			<input
 				type="text"
 				minLength="3"
@@ -53,7 +62,7 @@ export default function Form({ type, handleChangeDate }) {
 				onChange={handleChange}
 				required
 			/>
-
+			
 			<input
 				type="date"
 				id="date"
