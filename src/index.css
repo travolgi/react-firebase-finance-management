@@ -45,7 +45,7 @@ body, button, input {
 }
 
 h1, h2, h3 {
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	color: var(--white);
 }
 
@@ -145,13 +145,15 @@ input:focus, select:focus {
 	border: .1rem solid var(--text);
 }
 
-main {
+#root {
 	min-height: 100vh;
 	max-width: 100rem;
 	margin-inline: auto;
 	padding: 2rem 1rem;
 }
-
+main {
+	padding-top: 3rem;
+}
 header {
 	display: flex;
 	justify-content: space-between;
@@ -210,14 +212,14 @@ ul.expense-list li.no-expense {
 	text-align: center;
 }
 
-.copyright {
+footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: .6rem;
-	margin-block: 4rem 1rem;
+	padding-block: 4rem 1rem;
 }
-.copyright img {
+footer img {
 	width: 6rem;
 	margin-top: .15rem;
 }
@@ -284,8 +286,11 @@ ul.expense-list li.no-expense {
 		transform: translateX(0);
 	}  
 
+	nav {
+		grid-template-columns: repeat(2, max-content);
+	}
 	nav > h2 {
-		grid-column: span 3;
+		grid-column: span 2;
 	}
 	form {
 		grid-template-columns: repeat(2, 1fr);

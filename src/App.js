@@ -12,14 +12,18 @@ export default function App() {
 		<BrowserRouter>
 			<Header />
 
-			<div className="txt-center">
-				<h1>Finance Management</h1>
+			<main>
+				<h1 className="txt-center">Finance Management</h1>
 
 				{isUserSignedIn ?
 					<Routes>
 						<Route
 							path='/'
-							element={[<SectionType type='fun' />, <SectionType type='life' />]}
+							element={[
+								<SectionType type='fun' />,
+								<SectionType type='life'/>,
+								<SectionType type='rent'/>
+							]}
 						/>
 						<Route
 							path='/investments'
@@ -27,7 +31,10 @@ export default function App() {
 						/>
 						<Route
 							path='/earnings'
-							element={[<SectionType type='earnings' />, <SectionType type='job' />]}
+							element={[
+								<SectionType type='earnings' />,
+								<SectionType type='job' />
+							]}
 						/>
 						<Route
 							path='/bank'
@@ -35,17 +42,17 @@ export default function App() {
 						/>
 						<Route
 							path='/summary'
-							element={<h2>- Under construction -</h2>}
+							element={<h2 className="txt-center">- Under construction -</h2>}
 						/>
 						<Route
 							path='/*'
-							element={<h1>404 Error - Page Not Found</h1>}
+							element={<h1 className="txt-center">404 Error - Page Not Found</h1>}
 						/>
 					</Routes>
 					:
-					<p>Sign in with Google to use the app.</p>
+					<p className="txt-center">Sign in with Google to use the app.</p>
 				}
-			</div>
+			</main>
 
 			<Footer />
 		</BrowserRouter>
