@@ -1,6 +1,6 @@
-import { signInWithGoogle, signOut } from '../firebase.js';
-import useUser from '../hooks/useUser.js';
-import Navbar from './Navbar.js';
+import { signInWithGoogle, signOut } from '../firebase';
+import useUser from '../hooks/useUser';
+import Navbar from './Navbar';
 
 export default function Header() {
 	const user = useUser(),

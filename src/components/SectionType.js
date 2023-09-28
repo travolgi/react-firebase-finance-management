@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { db, auth } from '../firebase';
-import FilterBy from './FilterBy.js';
-import Form from './Form.js';
-import ExpenseList from './ExpenseList.js';
+import FilterBy from './FilterBy';
+import Form from './Form';
+import ExpenseList from './ExpenseList';
 
 export default function SectionType({ type }) {
 	const typeTitle = type.charAt(0).toUpperCase() + type.slice(1);

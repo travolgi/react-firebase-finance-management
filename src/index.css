@@ -35,7 +35,9 @@ html {
 	background-color: var(--bg);
 }
 
-body, button, input {
+body,
+button,
+input {
 	font-family: 'Sulphur Point', sans-serif;
 	font-size: 1.15rem;
 	font-weight: 300;
@@ -44,7 +46,9 @@ body, button, input {
 	color: var(--text);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 	margin-bottom: 1.5rem;
 	color: var(--white);
 }
@@ -67,10 +71,12 @@ button[type=submit] svg {
 	width: 1.5rem;
 	aspect-ratio: 1;
 }
-button:hover, button:active {
+button:hover,
+button:active {
 	background-image: linear-gradient( var(--bg-input), var(--bg-input) ), var(--gradient);
 }
-button.edit, button.delete {
+button.edit,
+button.delete {
 	padding: 0 .6rem;
 	background: transparent;
 }
@@ -84,7 +90,8 @@ button.delete::before {
 .nav-toggle {
 	display: none;
 }
-button.nav-toggle:hover, button.nav-toggle:active {
+button.nav-toggle:hover,
+button.nav-toggle:active {
 	background-image: none;
 }
 nav {
@@ -103,7 +110,7 @@ nav#navbar {
 }
 nav#navbar ul {
 	display: grid;
-	place-items: center;
+	align-items: center;
 	grid-template-columns: repeat(6, max-content);
 	gap: 2rem;
 }
@@ -127,7 +134,8 @@ nav#navbar ul a.active {
 	-webkit-text-fill-color: transparent;
 }
 
-input, select {
+input,
+select {
 	width: 100%;
 	padding: .4rem 1rem;
 	border-radius: 3rem;
@@ -141,7 +149,8 @@ select {
 	color: var(--text);
 	background-color: var(--bg-darkgreen);
 }
-input:focus, select:focus {
+input:focus,
+select:focus {
 	border: .1rem solid var(--text);
 }
 
@@ -177,15 +186,25 @@ header {
 }
 
 section {
-	padding-block: 1rem 4rem;
+	padding-block: 2rem 4rem;
 }
 
-form, ul.expense-list li {
+form,
+ul.expense-list li {
 	display: grid;
 	grid-template-columns: 1fr .5fr .5fr 2.3rem;
 	justify-items: start;
 	align-items: center;
 	gap: 1.5rem;
+}
+ul.expense-list.nobtn li {
+	grid-template-columns: 1fr .5fr .5fr;
+}
+ul.expense-list.nobtn li {
+	grid-template-columns: 1fr .5fr .5fr;
+}
+ul.expense-list.list-summary li {
+	grid-template-columns: 1fr 1fr;
 }
 form {
 	grid-template-columns: 1fr .5fr .5fr max-content;
@@ -206,6 +225,18 @@ ul.expense-list li.tot-earn {
 }
 ul.expense-list li.no-expense {
 	opacity: .6;
+}
+
+.summary-grid {
+	display: grid;
+	grid-template-columns: .65fr 1fr;
+	gap: 2rem;
+}
+.summary-grid > ul > li {
+	padding: 1rem;
+	margin-bottom: 2rem;
+	border-radius: .5rem;
+	background: var(--bg-input);
 }
 
 .txt-center {
@@ -297,7 +328,8 @@ footer img {
 		place-items: center;
 		gap: 1rem;
 	}
-	form input:first-child, form button[type="submit"] {
+	form input:first-child,
+	form button[type="submit"] {
 		grid-column: span 2;
 	}
 	ul.expense-list li {
@@ -311,5 +343,9 @@ footer img {
 	}
 	button.delete {
 		padding: 0;
+	}
+	.summary-grid {
+		grid-template-columns: 1fr;
+		gap: 4rem;
 	}
 }

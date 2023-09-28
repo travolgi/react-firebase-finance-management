@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ref, onValue, remove, update } from 'firebase/database';
 import { db, auth } from '../firebase';
 
-export default function ExpenseList({ type, yearActive, monthActive }) {
+export default function ExpenseList({ type, yearActive, monthActive, btn=true }) {
 	const [data, setData] = useState([]),
 			[totExpense, setTotExpense] = useState(null);
 
@@ -24,7 +24,7 @@ export default function ExpenseList({ type, yearActive, monthActive }) {
 					setData(dbData);
 
 					let total = dbData.reduce((tot, current) => tot + parseInt(current.price), 0);
-					setTotExpense(total.toLocaleString());
+					setTotExpense(total);
 				}
 			}
 		);
@@ -55,7 +55,7 @@ export default function ExpenseList({ type, yearActive, monthActive }) {
 	};
 
 	return (
-		<ul className="expense-list">
+		<ul className={`expense-list ${!btn ? 'nobtn' : ''}`}>
 			{data.length !== 0 ?
 				<>
 					{data.map(expense => 
@@ -63,23 +63,28 @@ export default function ExpenseList({ type, yearActive, monthActive }) {
 							<span>{expense.name}</span>
 							<strong>€ {parseInt(expense.price).toLocaleString()}</strong>
 							<time>{expense.date}</time>
-							<button
-								className="delete"
-								id={expense.id}
-								value={expense.date.slice(5,7)}
-								onClick={handleDelete}
-							/>
-							{/*
-							<button
-								className="edit"
-								id={expense.id}
-								onClick={handleUpdate}
-							/>
-							*/}
+
+							{btn &&
+								<>
+									<button
+										className="delete"
+										id={expense.id}
+										value={expense.date.slice(5,7)}
+										onClick={handleDelete}
+									/>
+									{/*
+									<button
+										className="edit"
+										id={expense.id}
+										onClick={handleUpdate}
+									/>
+									*/}
+								</>
+							}
 						</li>
 					)}
 
-					<li className={type !== 'earnings' ? 'tot-expense' : 'tot-earn'}>
+					<li className={type !== 'earnings' && type !== 'job' ? 'tot-expense' : 'tot-earn'}>
 						<span>TOTAL:</span>
 						<strong>€ {totExpense}</strong>
 					</li>

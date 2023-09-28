@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import useUser from './hooks/useUser.js';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
-import SectionType from './components/SectionType.js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import useUser from './hooks/useUser'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import SectionType from './components/SectionType'
+import SectionSummary from './components/SectionSummary'
 
 export default function App() {
 	const user = useUser(),
 			isUserSignedIn = user !== null;
-
 	return (
 		<BrowserRouter>
 			<Header />
