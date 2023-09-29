@@ -223,7 +223,7 @@ section {
 form,
 ul.expense-list li {
 	display: grid;
-	grid-template-columns: 1fr .5fr .5fr 4.5rem;
+	grid-template-columns: 1fr .5fr .5fr 10rem;
 	justify-items: start;
 	align-items: center;
 	gap: 1.5rem;
@@ -235,7 +235,7 @@ form div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: .3rem;
 }
 ul.expense-list.nobtn li {
 	grid-template-columns: 1fr .5fr .5fr;
@@ -262,6 +262,15 @@ ul.expense-list li.tot-earn {
 }
 ul.expense-list li.no-expense {
 	opacity: .6;
+}
+ul.expense-list div.commands {
+	display: flex;
+}
+ul.expense-list div.commands button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: .3rem;
 }
 
 .summary-grid {
@@ -365,8 +374,11 @@ footer img {
 		place-items: center;
 		gap: 1rem;
 	}
+	form div {
+		gap: 1.5rem;
+	}
 	form input:first-child,
-	form button[type="submit"] {
+	form div {
 		grid-column: span 2;
 	}
 	ul.expense-list li {
@@ -375,8 +387,11 @@ footer img {
 		gap: 0 1rem;
 		padding-right: 0;
 	}
-	ul.expense-list button {
+	ul.expense-list div.commands {
 		justify-self: end;
+	}
+	ul.expense-list div.commands span {
+		display: none;
 	}
 	button.delete {
 		padding: 0;
