@@ -28,7 +28,10 @@ export default function App() {
 						/>
 						<Route
 							path='/investments'
-							element={<SectionType type='investments' />}
+							element={[
+								<SectionType type='investments' />,
+								<SectionType type='roi' />
+							]}
 						/>
 						<Route
 							path='/earnings'

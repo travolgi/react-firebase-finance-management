@@ -24,11 +24,23 @@ export default function SectionType({ type }) {
 				setAllYears([]);
 				setAllMonths([]);
 				const snapval = snapshot.val();
+
 				if(snapval !== null) {
 					const availableYears = Object.keys(snapval);
-					const allMonthsByYear = Object.entries(snapval).map(([key, dbMonth]) => ({ [key]: Object.keys(dbMonth) }));
-					const availableMonths = allMonthsByYear.find(year => Object.keys(year).toString() === date.year.toString())[date.year];
+					if (!availableYears.includes(currentDate.year.toString())) {
+						availableYears.push(currentDate.year.toString());
+					}
 
+					const allMonthsByYear = Object.entries(snapval).map(([key, dbMonth]) => ({ [key]: Object.keys(dbMonth) }));
+					if ( !allMonthsByYear.some(year => Object.keys(year)[0] === currentDate.year.toString()) ) {
+						allMonthsByYear.push( { [currentDate.year.toString()]: [] } );
+					}
+					
+					const availableMonths = allMonthsByYear.find(year => Object.keys(year).toString() === date.year.toString())[date.year];
+					if ( !availableMonths.includes(currentDate.month.toString()) ) {
+						availableMonths.push(currentDate.month.toString());
+					}
+					
 					setAllYears(availableYears);
 					setAllMonths(availableMonths);
 				}
@@ -41,7 +53,6 @@ export default function SectionType({ type }) {
 			<nav>
 				<h2>{typeTitle}</h2>
 				<FilterBy
-					type={type}
 					currentDate={currentDate}
 					monthActive={date.month}
 					yearActive={date.year}

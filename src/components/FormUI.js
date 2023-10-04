@@ -4,7 +4,7 @@ export default function FormUI({ handleSubmit, type, valueData, handleChange, ha
 			<input
 				type="text"
 				minLength="3"
-				placeholder={type !== 'earnings' ? 'Expense name' : 'Earning name'}
+				placeholder={type !== 'earnings' && type !== 'job' && type !== 'roi' ? 'Expense name' : 'Earning name'}
 				id="name"
 				value={valueData.name}
 				onChange={handleChange}
@@ -35,7 +35,7 @@ export default function FormUI({ handleSubmit, type, valueData, handleChange, ha
 					<span className="sr-only">Save</span>
 				</button>
 
-				<button type="reset" className="delete" onClick={handleReset}> Cancel</button>
+				<button type="reset" className="delete" onClick={handleReset}> {valueData.id ? 'Cancel' : 'Reset'}</button>
 			</div>
 		</form>
 	);

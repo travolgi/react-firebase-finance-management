@@ -1,4 +1,4 @@
-export default function FilterBy({ type, currentDate, monthActive, yearActive, allMonths, allYears, handleChangeDate }) {
+export default function FilterBy({ currentDate, monthActive, yearActive, allMonths, allYears, handleChangeDate }) {
 	function getMonthName(monthNumber) {
 		const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 		return monthNames[monthNumber - 1];
@@ -13,8 +13,8 @@ export default function FilterBy({ type, currentDate, monthActive, yearActive, a
 			>
 
 				{allMonths.length > 0 ?
-					allMonths.map((month) =>
-						<option key={month} value={month}>
+					allMonths.map((month, idx) =>
+						<option key={idx} value={month}>
 							{getMonthName(month)}
 						</option>
 					) :
@@ -30,8 +30,8 @@ export default function FilterBy({ type, currentDate, monthActive, yearActive, a
 				onChange={(e) => handleChangeDate('year', e.target.value)}
 			>
 				{allYears.length > 0 ?
-					allYears.map(year =>
-						<option key={year} value={year}>
+					allYears.map((year, idx) =>
+						<option key={idx} value={year}>
 							{year}
 						</option>
 					) :
