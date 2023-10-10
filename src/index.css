@@ -45,7 +45,9 @@ input {
 	line-height: 1.5;
 	color: var(--text);
 }
-
+input[type="checkbox"] {
+	width: min-content;
+}
 h1,
 h2,
 h3 {
@@ -283,6 +285,16 @@ ul.expense-list div.commands button {
 	margin-bottom: 2rem;
 	border-radius: .5rem;
 	background: var(--bg-input);
+}
+.summary-filter label {
+	display: grid;
+	grid-template-columns: 1fr max-content 1fr;
+	gap: 1.5rem;
+	padding-inline: .5rem;
+}
+.summary-filter select {
+	padding-inline: .5rem;
+	margin-bottom: 2rem;
 }
 
 .txt-center {

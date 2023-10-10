@@ -58,22 +58,20 @@ export default function ExpenseList({ type, yearActive, monthActive, btn=true })
 				expensePath = `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`;
 		
 		const updateExpense = {
+			id: expenseId,
 			name: editData.name.trim(),
 			price: editData.price.trim(),
 			date: editData.date
 		};
 
-		/*
+
 		const existingExpense = data.find(item => item.id === expenseId);
 		if(editData.date.slice(0, 7) !== existingExpense.date.slice(0, 7)) {
-			console.log(expenseId)
-			const oldQueryMonth = monthActive === 'all' ? parseInt(existingExpense.date.slice(5, 7)) : monthActive,
+			const oldQueryMonth = parseInt(existingExpense.date.slice(5, 7)),
 					oldQueryYear = yearActive,
 					oldExpensePath = `/users/${auth.currentUser.uid}/${type}/${oldQueryYear}/${oldQueryMonth}/${expenseId}`,
-					newExpensePath = `/users/${auth.currentUser.uid}/${type}/${editData.date.slice(0, 4)}/${editData.date.slice(5, 7)}/${expenseId}`;
-	console.log(expenseId)
-	console.log(oldExpensePath)
-	console.log(newExpensePath)
+					newExpensePath = `/users/${auth.currentUser.uid}/${type}/${editData.date.slice(0, 4)}/${editData.date.slice(5, 7)}/${editData.id}`;
+
 			remove(ref(db, oldExpensePath))
 				.then(() => {
 					update(ref(db, newExpensePath), updateExpense)
@@ -86,7 +84,6 @@ export default function ExpenseList({ type, yearActive, monthActive, btn=true })
 				})
 				.catch(err => console.log(err));
 		} else {
-		*/
 			update(ref(db, expensePath), updateExpense)
 				.then(() => {
 					console.log('Successfully updated!');
@@ -94,7 +91,7 @@ export default function ExpenseList({ type, yearActive, monthActive, btn=true })
 					handleEditing();
 				})
 				.catch(err => console.log(err));
-		// }
+		}
 	}
 
 	const handleDelete = e => {

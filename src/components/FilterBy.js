@@ -12,7 +12,7 @@ export default function FilterBy({ currentDate, monthActive, yearActive, allMont
 				onChange={(e) => handleChangeDate('month', e.target.value)}
 			>
 
-				{allMonths.length > 0 ?
+				{allMonths !== undefined && allMonths.length > 0 ?
 					allMonths.map((month, idx) =>
 						<option key={idx} value={month}>
 							{getMonthName(month)}
@@ -29,7 +29,7 @@ export default function FilterBy({ currentDate, monthActive, yearActive, allMont
 				value={yearActive}
 				onChange={(e) => handleChangeDate('year', e.target.value)}
 			>
-				{allYears.length > 0 ?
+				{allMonths !== undefined && allYears.length > 0 ?
 					allYears.map((year, idx) =>
 						<option key={idx} value={year}>
 							{year}
