@@ -46,11 +46,8 @@ export default function App() {
 						/>
 						<Route
 							path='/summary'
-							element={<h2 className="txt-center">Under construction</h2>}
-						/>
-						{/*
 							element={<SectionSummary />}
-						*/} 
+						/>
 						<Route
 							path='/*'
 							element={<h1 className="txt-center">404 Error - Page Not Found</h1>}

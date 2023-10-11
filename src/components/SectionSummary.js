@@ -81,20 +81,37 @@ export default function SectionSummary() {
 			totalsByTypes[type] = totalType;
 		}
 
-		let total = 0;
-		for (const type in totalsByTypes) {
-			total += totalsByTypes[type];
-		}
-
 		setAllMonthsYears(allDates);
 		setTypesTotal(totalsByTypes);
-		setSummaryTotal(total);
 	}, [userData, types]);
-
+	
+	useEffect(() => {
+		let totalEarnings = 0;
+		let totalExpence = 0;
+		
+		totalEarnings = typesSelected.reduce((acc, type) => {
+			if (['earnings', 'job', 'roi'].includes(type)) {
+				acc += typesTotal[type];
+			}
+			return acc;
+		}, 0);
+	
+		totalExpence = typesSelected.reduce((acc, type) => {
+			if (['bank', 'fun', 'investments', 'life', 'rent'].includes(type)) {
+				acc += typesTotal[type];
+			}
+			return acc;
+		}, 0);
+	
+		const totalSummary = totalEarnings - totalExpence;
+	
+		setSummaryTotal(totalSummary);
+	}, [typesTotal, typesSelected]);
+	
 	return (
 		<section className="summary-grid">
 			<aside>
-				<h2>Financial Statement:</h2>
+				<h2>Balance:</h2>
 				
 				<div className="summary-filter">
 					<h3>Filter by:</h3>
@@ -125,8 +142,8 @@ export default function SectionSummary() {
 					)}
 				</div>
 
-				<ul className='expense-list list-summary'>
-					<li>
+				<ul className="expense-list list-summary">
+					<li className={summaryTotal < 0 ? 'tot-expense' : 'tot-earn'}>
 						<span>TOTAL:</span>
 						<strong>€ {summaryTotal}</strong>
 					</li>
