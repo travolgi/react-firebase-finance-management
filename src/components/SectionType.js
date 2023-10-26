@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ref, onValue } from 'firebase/database';
 import { db, auth } from '../firebase';
 import FilterBy from './FilterBy';
@@ -6,6 +7,7 @@ import Form from './Form';
 import ExpenseList from './ExpenseList';
 
 export default function SectionType({ type }) {
+	const location = useLocation().pathname;
 	const typeTitle = type.charAt(0).toUpperCase() + type.slice(1);
 	const currentDate = {
 		year: new Date().getFullYear(),
@@ -15,6 +17,8 @@ export default function SectionType({ type }) {
 			[allMonths, setAllMonths] = useState([]),
 			[allYears, setAllYears] = useState([]);
 	const handleChangeDate = (id, value) => setDate({ ...date, [id]: value });
+
+	useEffect(() => setDate(currentDate), [location]);
 
 	useEffect(() => {
 		const query =  `/users/${auth.currentUser.uid}/${type}`;
