@@ -8,7 +8,8 @@ import ExpenseList from './ExpenseList';
 
 export default function SectionType({ type }) {
 	const location = useLocation().pathname;
-	const typeTitle = type.charAt(0).toUpperCase() + type.slice(1);
+	const getTitle = type.charAt(0).toUpperCase() + type.slice(1);
+	const typeTitle = type === 'rent' ? getTitle + ' & Taxes' : getTitle;
 	const currentDate = {
 		year: new Date().getFullYear(),
 		month: new Date().getMonth() + 1
