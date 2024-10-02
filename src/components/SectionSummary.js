@@ -126,7 +126,7 @@ export default function SectionSummary() {
 
 					{types.map(type =>
 						<label key={type} htmlFor={type}>
-							{type.charAt(0).toUpperCase() + type.slice(1)}
+						   	{type === 'rent' ? 'Rent & Taxes' : type.charAt(0).toUpperCase() + type.slice(1)}
 
 							<input
 								type="checkbox"
